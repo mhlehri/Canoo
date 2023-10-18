@@ -1,44 +1,80 @@
-import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Textarea,
+  Select,
+  Option,
+} from "@material-tailwind/react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export function AddProduct() {
+  const [selection, setSelection] = useState(null);
   const handleAdd = (e) => {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    const user = { email, password };
-    console.log(user);
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const type = form.type.value;
+    const price = form.price.value;
+    const rating = form.rating.value;
+    const des = form.des.value;
+    const brand = selection;
+    const carInfo = {
+      name,
+      des,
+      photo,
+      type,
+      price,
+      rating,
+      brand,
+    };
+    console.log(carInfo);
   };
   return (
     <div className="mx-auto max-w-lg my-20 px-6">
       <Card color="transparent" shadow={false}>
         <Typography variant="h4" color="blue-gray">
-          Sign In
+          Add Product
         </Typography>
         <Typography color="gray" className="mt-1 font-normal">
-          Enter your details to Login.
+          Carefully fill up the form
         </Typography>
         <form onSubmit={handleAdd} className="mt-8 mb-2 max-w-screen-lg ">
           <div className="mb-4 flex flex-col gap-6">
             <Input type="text" size="lg" name="photo" label="Photo URL" />
-            <Input type="email" size="lg" name="email" label="Email" />
-            <Input type="email" size="lg" name="email" label="Email" />
-            <Input type="email" size="lg" name="email" label="Email" />
-            <Input type="email" size="lg" name="email" label="Email" />
-            <Input type="email" size="lg" name="email" label="Email" />
-            <Input type="email" size="lg" name="email" label="Email" />
-            <Input type="password" size="lg" name="password" label="Password" />
+            <Input type="text" size="lg" name="name" label="Name" />
+            <Select
+              size="md"
+              value={selection}
+              onChange={(value) => setSelection(value)}
+              name="brand"
+              label="Select Brand"
+            >
+              <Option value="Toyota">Toyota</Option>
+              <Option value="BMW">BMW</Option>
+              <Option value="Mercedes-benz">Mercedes-benz</Option>
+              <Option value="Audi">Audi</Option>
+              <Option value="Tesla">Tesla</Option>
+              <Option value="Others">Others</Option>
+            </Select>
+            <Input type="text" size="lg" name="type" label="Type" />
+            <Input type="number" size="lg" name="price" label="Price" />
+            <Textarea
+              type="email"
+              size="lg"
+              rows={6}
+              name="des"
+              label="Short Description"
+            />
+
+            <Input type="number" size="lg" name="rating" label="Rating" />
           </div>
           <Button type="submit" className="mt-6" fullWidth>
-            Login
+            Add
           </Button>
-          <Typography color="gray" className="mt-4 text-center font-normal">
-            Don't have an account?{" "}
-            <Link to="/signUp" className="font-medium text-gray-900">
-              Sign Up
-            </Link>
-          </Typography>
         </form>
       </Card>
     </div>
