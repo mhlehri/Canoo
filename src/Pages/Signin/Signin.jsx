@@ -67,7 +67,23 @@ export function SignIn() {
             <hr className="border-t-2 py-2" />
 
             <Button
-              onClick={() => googleLogin().then().catch()}
+              onClick={() =>
+                googleLogin()
+                  .then(() => {
+                    navigate("/");
+                    toast.success("Successfully Logged In!", {
+                      position: "top-center",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "colored",
+                    });
+                  })
+                  .catch()
+              }
               className="bg-green-800 dark:bg-white  dark:text-black mb-2"
               size="sm"
             >

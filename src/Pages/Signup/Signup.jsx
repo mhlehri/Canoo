@@ -6,11 +6,12 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useContext } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Component/AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 export function SignUp() {
-  const { createUser, profileUpdate, logOut } = useContext(AuthContext);
+  const { createUser, profileUpdate, logOut, googleLogin } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -154,6 +155,33 @@ export function SignUp() {
               </Link>
             </Typography>
           </form>
+          <div className="w-full mx-auto text-center">
+            <hr className="border-t-2 py-2" />
+
+            <Button
+              onClick={() =>
+                googleLogin()
+                  .then(() => {
+                    navigate("/");
+                    toast.success("Successfully Logged In!", {
+                      position: "top-center",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "colored",
+                    });
+                  })
+                  .catch()
+              }
+              className="bg-green-800 dark:bg-white  dark:text-black mb-2"
+              size="sm"
+            >
+              <span>Login with Google</span>
+            </Button>
+          </div>
         </Card>
       </div>
     </div>

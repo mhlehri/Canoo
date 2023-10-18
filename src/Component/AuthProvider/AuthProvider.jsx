@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
 
   const googleLogin = () => {
     setLoading(true);
-    return signInWithPopup(googleAuth);
+    return signInWithPopup(auth, googleAuth);
   };
 
   useEffect(() => {
