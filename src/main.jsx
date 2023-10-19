@@ -12,6 +12,7 @@ import AuthProvider from "./Component/AuthProvider/AuthProvider";
 import PrivateRoute from "./Component/AuthProvider/PrivateRoute/PrivateRoute";
 import BrandDetails from "./Pages/BrandDetails/BrandDetails";
 import Error from "./Pages/Error/Error";
+import CarsInfo from "./Pages/CarsInfo/CarsInfo";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,12 @@ const router = createBrowserRouter([
         element: <BrandDetails></BrandDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/cars/${params.brand}`),
+      },
+      {
+        path: "/cars-info/:carName",
+        element: <CarsInfo></CarsInfo>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/cars-info/${params.carName}`),
       },
     ],
   },
