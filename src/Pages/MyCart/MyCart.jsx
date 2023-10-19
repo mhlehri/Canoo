@@ -11,9 +11,12 @@ const MyCart = () => {
     Swal.fire({
       title: `Are you sure to remove ${name}?`,
       icon: "warning",
+      color: "white",
       showCancelButton: true,
       cancelButtonText: "No",
       confirmButtonText: "Yes",
+      confirmButtonColor: "orange",
+      background: "teal",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/remove/${_id}`, {
@@ -104,7 +107,7 @@ const MyCart = () => {
         </table>
       </div>
 
-      <div className="shadow-md  p-4 rounded-lg space-y-2 dark:text-white w-1/3">
+      <div className="shadow-md  p-4 rounded-lg space-y-2 dark:bg-gray-800 dark:text-white w-1/3">
         <h1 className="text-3xl">Total</h1>
         <p className="text-2xl">${total}</p>
         <Button>Make Purchase</Button>

@@ -7,7 +7,7 @@ import {
   Collapse,
   ButtonGroup,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 export function StickyNavbar() {
@@ -27,27 +27,42 @@ export function StickyNavbar() {
         variant="small"
         className="p-1 dark:text-white text-black font-normal"
       >
-        <Link to="/" className="flex items-center">
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-red-500" : ""
+          }
+        >
           Home
-        </Link>
+        </NavLink>
       </Typography>
       <Typography
         as="li"
         variant="small"
         className="p-1 dark:text-white text-black font-normal"
       >
-        <Link to="/addProduct" className="flex items-center">
+        <NavLink
+          to="/addProduct"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-red-500" : ""
+          }
+        >
           Add Product
-        </Link>
+        </NavLink>
       </Typography>
       <Typography
         as="li"
         variant="small"
         className="p-1 dark:text-white text-black font-normal"
       >
-        <Link to="/myCart" className="flex items-center">
+        <NavLink
+          to="/myCart"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-red-500" : ""
+          }
+        >
           My Cart
-        </Link>
+        </NavLink>
       </Typography>
     </ul>
   );

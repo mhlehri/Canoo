@@ -95,6 +95,7 @@ export function AddProduct() {
                 <Option value="Mercedes-benz">Mercedes-benz</Option>
                 <Option value="Audi">Audi</Option>
                 <Option value="Tesla">Tesla</Option>
+                <Option value="Honda">Honda</Option>
                 <Option value="Others">Others</Option>
               </Select>
               <Input type="text" size="lg" name="type" label="Type" />
@@ -109,7 +110,7 @@ export function AddProduct() {
 
               <Input type="number" size="lg" name="rating" label="Rating" />
             </div>
-            <Button type="submit" className="mt-6" fullWidth>
+            <Button type="submit" className="mt-6 dark:bg-gray-800" fullWidth>
               Add
             </Button>
           </form>
