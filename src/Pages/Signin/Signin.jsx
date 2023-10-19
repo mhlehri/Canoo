@@ -5,7 +5,7 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { toast } from "react-toastify";
 
 export function SignIn() {
-  const { logIn, googleLogin } = useContext(AuthContext);
+  const { logIn, googleLogin, user } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ export function SignIn() {
       .then(() => {
         toast.success("Successfully Registered!", {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -28,7 +28,18 @@ export function SignIn() {
         });
         navigate("/");
       })
-      .catch((err) => toast.error(`${err.message}`));
+      .catch((err) =>
+        toast.error(`${err.message}`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      );
   };
   return (
     <div className="mx-3">
@@ -71,9 +82,9 @@ export function SignIn() {
                 googleLogin()
                   .then(() => {
                     navigate("/");
-                    toast.success("Successfully Logged In!", {
+                    toast.success(`Successfully Logged In!`, {
                       position: "top-center",
-                      autoClose: 5000,
+                      autoClose: 3000,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,

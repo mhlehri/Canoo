@@ -1,26 +1,55 @@
 import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
   const loaded = useLoaderData();
-  const handledelete = () => {
-    console.log("succ");
-    fetch("http://localhost:5000/remove", {
-      method: "DELETE",
+  const [remaining, setRemaining] = useState(loaded);
+  const handledelete = (_id, name) => {
+    Swal.fire({
+      title: `Are you sure to remove ${name}?`,
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/remove/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              const remained = remaining.filter((remain) => remain._id !== _id);
+              setRemaining(remained);
+              toast.success("Successfully removed!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            }
+          });
+      }
     });
   };
-  const [total, setTotal] = useState(null);
+  const [total, setTotal] = useState(0);
   useEffect(() => {
     let total = 0;
-    loaded.map((value) => {
+    remaining.map((value) => {
       total += parseInt(value.price);
     });
     setTotal(total);
-  }, []);
+  }, [remaining]);
 
   return (
-    <div className="max-w-screen-xl mx-auto flex my-16 justify-between items-start">
+    <div className="max-w-screen-xl mx-auto flex my-16 min-h-[50vh] justify-between items-start">
       <div className="relative overflow-x-auto  shadow-md sm:rounded-lg  ">
         <table className="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -43,7 +72,7 @@ const MyCart = () => {
             </tr>
           </thead>
           <tbody>
-            {loaded?.map((car, i) => {
+            {remaining?.map((car, i) => {
               return (
                 <tr
                   key={i}
@@ -59,12 +88,14 @@ const MyCart = () => {
                   <td className="px-6 py-4">{car.type}</td>
                   <td className="px-6 py-4">${car.price}</td>
                   <td className="px-6 py-4 text-right">
-                    <Link
-                      onClick={handledelete}
+                    <Button
+                      onClick={() => {
+                        handledelete(car._id, car.name);
+                      }}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Remove
-                    </Link>
+                    </Button>
                   </td>
                 </tr>
               );

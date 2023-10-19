@@ -1,6 +1,5 @@
 import { Button, Rating } from "@material-tailwind/react";
 import { Link, useLoaderData } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const BrandDetails = () => {
   const loaded = useLoaderData();

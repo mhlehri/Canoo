@@ -8,10 +8,14 @@ import {
   Option,
 } from "@material-tailwind/react";
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export function AddProduct() {
+export function EditCar() {
   const [selection, setSelection] = useState(null);
+  const loaded = useLoaderData();
+  const { name, photo, type, des, price, rating, brand } = loaded;
+
   const handleAdd = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -46,7 +50,7 @@ export function AddProduct() {
       };
 
       fetch("http://localhost:5000/addProducts", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "content-type": "application/json",
         },
@@ -55,7 +59,7 @@ export function AddProduct() {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            toast.success("Product added successfully!", {
+            toast.success("Product Updated successfully!", {
               position: "top-center",
               autoClose: 3000,
               hideProgressBar: false,
@@ -81,13 +85,26 @@ export function AddProduct() {
           </Typography>
           <form onSubmit={handleAdd} className="mt-8 mb-2 max-w-screen-lg ">
             <div className="mb-4 flex flex-col gap-6">
-              <Input type="text" size="lg" name="photo" label="Photo URL" />
-              <Input type="text" size="lg" name="name" label="Name" />
+              <Input
+                defaultValue={photo}
+                type="text"
+                size="lg"
+                name="photo"
+                label="Photo URL"
+              />
+              <Input
+                defaultValue={name}
+                type="text"
+                size="lg"
+                name="name"
+                label="Name"
+              />
               <Select
                 size="md"
                 value={selection}
                 onChange={(value) => setSelection(value)}
                 name="brand"
+                defaultValue={brand}
                 label="Select Brand"
               >
                 <Option value="Toyota">Toyota</Option>
@@ -97,20 +114,39 @@ export function AddProduct() {
                 <Option value="Tesla">Tesla</Option>
                 <Option value="Others">Others</Option>
               </Select>
-              <Input type="text" size="lg" name="type" label="Type" />
-              <Input type="number" size="lg" name="price" label="Price" />
+              <Input
+                defaultValue={type}
+                type="text"
+                size="lg"
+                name="type"
+                label="Type"
+              />
+              <Input
+                defaultValue={price}
+                type="number"
+                size="lg"
+                name="price"
+                label="Price"
+              />
               <Textarea
                 type="email"
                 size="lg"
                 rows={6}
                 name="des"
+                defaultValue={des}
                 label="Short Description"
               />
 
-              <Input type="number" size="lg" name="rating" label="Rating" />
+              <Input
+                defaultValue={rating}
+                type="number"
+                size="lg"
+                name="rating"
+                label="Rating"
+              />
             </div>
             <Button type="submit" className="mt-6" fullWidth>
-              Add
+              Update
             </Button>
           </form>
         </Card>

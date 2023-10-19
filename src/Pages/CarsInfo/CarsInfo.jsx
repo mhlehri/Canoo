@@ -1,5 +1,6 @@
 import { Button, Rating } from "@material-tailwind/react";
 import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CarsInfo = () => {
   const loadedCar = useLoaderData();
@@ -24,7 +25,20 @@ const CarsInfo = () => {
       body: JSON.stringify(newCar),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data.insertedId));
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success(`${name} successfully added!`, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
   };
   return (
     <section className="bg-white max-w-screen-xl mx-auto dark:bg-gray-900 py-8 sm:py-16">

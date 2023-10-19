@@ -13,6 +13,7 @@ import PrivateRoute from "./Component/AuthProvider/PrivateRoute/PrivateRoute";
 import BrandDetails from "./Pages/BrandDetails/BrandDetails";
 import Error from "./Pages/Error/Error";
 import CarsInfo from "./Pages/CarsInfo/CarsInfo";
+import { EditCar } from "./Pages/EditPage/EditCar";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,12 @@ const router = createBrowserRouter([
         element: <CarsInfo></CarsInfo>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/cars-info/${params.carName}`),
+      },
+      {
+        path: "/cars-edit/:carName",
+        element: <EditCar></EditCar>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/cars-edit/${params.carName}`),
       },
     ],
   },

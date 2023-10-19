@@ -25,7 +25,7 @@ export function SignUp() {
     if (password.length < 6) {
       return toast.error("Password should be at least 6 character!", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -36,7 +36,7 @@ export function SignUp() {
     } else if (!password.match(/[A-Z]/)) {
       return toast.error("Password should have at least one UpperCase!", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -49,7 +49,7 @@ export function SignUp() {
     ) {
       return toast.error("Password should have at least special Character!", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -62,7 +62,7 @@ export function SignUp() {
         .then((res) => {
           toast.success("Successfully Registered!", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -82,7 +82,7 @@ export function SignUp() {
         .catch((err) => {
           toast.error(`${err.message}`, {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -165,7 +165,7 @@ export function SignUp() {
                     navigate("/");
                     toast.success("Successfully Logged In!", {
                       position: "top-center",
-                      autoClose: 5000,
+                      autoClose: 3000,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,
