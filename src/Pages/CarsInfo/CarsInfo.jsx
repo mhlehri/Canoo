@@ -1,13 +1,30 @@
 import { Button, Rating } from "@material-tailwind/react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const CarsInfo = () => {
   const loadedCar = useLoaderData();
 
   const { photo, name, brand, price, rating, des, type } = loadedCar;
 
+  const newCar = {
+    photo,
+    name,
+    brand,
+    price,
+    rating,
+    des,
+    type,
+  };
   const handleAddCart = () => {
-    fetch("");
+    fetch("http://localhost:5000/cars-info/add", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCar),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data.insertedId));
   };
   return (
     <section className="bg-white max-w-screen-xl mx-auto dark:bg-gray-900 py-8 sm:py-16">
