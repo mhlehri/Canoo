@@ -95,7 +95,7 @@ export function SignIn() {
                   })
                   .catch()
               }
-              className="bg-green-800 dark:bg-white  dark:text-black mb-2"
+              className="bg-green-800   mb-2"
               size="sm"
             >
               <span>Login with Google</span>

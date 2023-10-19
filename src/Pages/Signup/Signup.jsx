@@ -165,7 +165,7 @@ export function SignUp() {
                     navigate("/");
                     toast.success("Successfully Logged In!", {
                       position: "top-center",
-                      autoClose: 3000,
+                      autoClose: 5000,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,
@@ -176,7 +176,7 @@ export function SignUp() {
                   })
                   .catch()
               }
-              className="bg-green-800 dark:bg-white  dark:text-black mb-2"
+              className="bg-green-800   mb-2"
               size="sm"
             >
               <span>Login with Google</span>

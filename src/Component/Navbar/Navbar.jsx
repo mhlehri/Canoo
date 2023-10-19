@@ -1,18 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Navbar,
   Typography,
   Button,
   IconButton,
   Collapse,
-  ButtonGroup,
+  Switch,
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import makeDark from "../../..";
 
 export function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
-
+  const [dark, setDark] = useState(false);
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -30,7 +31,7 @@ export function StickyNavbar() {
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-red-500" : ""
+            isPending ? "pending" : isActive ? "border-2 p-1" : ""
           }
         >
           Home
@@ -44,7 +45,7 @@ export function StickyNavbar() {
         <NavLink
           to="/addProduct"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-red-500" : ""
+            isPending ? "pending" : isActive ? "border-2 p-1" : ""
           }
         >
           Add Product
@@ -58,7 +59,7 @@ export function StickyNavbar() {
         <NavLink
           to="/myCart"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-red-500" : ""
+            isPending ? "pending" : isActive ? "border-2 p-1" : ""
           }
         >
           My Cart
@@ -83,30 +84,67 @@ export function StickyNavbar() {
               alt="blue-car-logo-png"
               width={50}
             />{" "}
-            Canno
+            CANOO
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
+
+            <button
+              onClick={() => {
+                makeDark();
+                setDark(!dark);
+              }}
+              type="button"
+              className="text-gray-500 dark:text-gray-400 bg-gray-200 dark:bg-gray-700 focus:outline-none  rounded-lg text-sm p-2.5"
+            >
+              {dark ? (
+                <svg
+                  id="theme-toggle-dark-icon"
+                  className="w-5 h-5 "
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+              ) : (
+                <svg
+                  id="theme-toggle-light-icon"
+                  className="w-5 h-5 "
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              )}
+            </button>
             {user ? (
-              <div className="flex items-center gap-2">
-                <div className="border-l-2 border-black ps-2 flex items-center  gap-1">
-                  {user?.displayName}
-                  <img
-                    src={user?.photoURL}
-                    className={`${
-                      user
-                        ? "w-[40px] h-[40px] rounded-full border-2 border-black"
-                        : "w-0 h-0 border-none"
-                    }`}
-                    alt=""
-                  />
+              <div className="flex items-center gap-2 text-sm">
+                <div className="hidden lg:inline-block">
+                  <div className=" ps-2 flex items-center  gap-1">
+                    {user?.displayName}
+                    <img
+                      src={user?.photoURL}
+                      className={`${
+                        user
+                          ? "w-[40px] h-[40px] rounded-full border-2 border-black"
+                          : "w-0 h-0 border-none"
+                      }`}
+                      alt=""
+                    />
+                  </div>
                 </div>
 
                 <Link to="/login">
                   <Button
                     onClick={() => logOut().then().catch()}
                     size="sm"
-                    className="hidden  dark:bg-white  dark:text-black lg:inline-block"
+                    className="hidden    lg:inline-block"
                   >
                     <span>Logout</span>
                   </Button>
@@ -114,14 +152,12 @@ export function StickyNavbar() {
               </div>
             ) : (
               <Link to="/login">
-                <Button
-                  size="sm"
-                  className="hidden  dark:bg-white  dark:text-black lg:inline-block"
-                >
+                <Button size="sm" className="hidden   lg:inline-block">
                   <span>Login</span>
                 </Button>
               </Link>
             )}
+
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -165,7 +201,7 @@ export function StickyNavbar() {
           {navList}
           {user ? (
             <div>
-              <div className="border-l-2 border-black ps-2 flex items-center  gap-1">
+              <div className=" text-black my-2   flex items-center  gap-1">
                 {user?.displayName}
                 <img
                   src={user?.photoURL}
@@ -180,7 +216,7 @@ export function StickyNavbar() {
               <Link to="/login">
                 <Button
                   onClick={() => logOut().then().catch()}
-                  className="dark:bg-white  dark:text-black mb-2"
+                  className="  mb-2"
                   size="sm"
                   fullWidth
                 >
@@ -190,11 +226,7 @@ export function StickyNavbar() {
             </div>
           ) : (
             <Link to="/login">
-              <Button
-                className="dark:bg-white  dark:text-black mb-2"
-                size="sm"
-                fullWidth
-              >
+              <Button className="  mb-2" size="sm" fullWidth>
                 <span>Login</span>
               </Button>
             </Link>

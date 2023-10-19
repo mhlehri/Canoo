@@ -8,8 +8,8 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="h-screen w-screen  justify-center items-center">
-        <Spinner className="h-16 w-16 text-gray-900/50" />
+      <div className="h-screen w-screen mx-auto flex justify-center items-center">
+        <Spinner className="h-16 w-16  text-gray-900/50 dark:text-white" />
       </div>
     );
   }
