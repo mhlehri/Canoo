@@ -5,7 +5,6 @@ import {
   Button,
   IconButton,
   Collapse,
-  Switch,
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
@@ -13,7 +12,7 @@ import makeDark from "../../..";
 
 export function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -89,7 +88,7 @@ export function StickyNavbar() {
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
 
-            <button
+            <Button
               onClick={() => {
                 makeDark();
                 setDark(!dark);
@@ -122,7 +121,7 @@ export function StickyNavbar() {
                   ></path>
                 </svg>
               )}
-            </button>
+            </Button>
             {user ? (
               <div className="flex items-center gap-2 text-sm">
                 <div className="hidden lg:inline-block">
