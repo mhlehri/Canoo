@@ -8,7 +8,6 @@ import {
   Option,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export function AddProduct() {
   const [selection, setSelection] = useState(null);
@@ -31,6 +30,14 @@ export function AddProduct() {
       rating,
       brand,
     };
+
+    fetch("http://localhost:5000/addProducts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(carInfo),
+    });
     console.log(carInfo);
   };
   return (
