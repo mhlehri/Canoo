@@ -47,7 +47,7 @@ export function AddProduct() {
         brand,
       };
 
-      fetch("http://localhost:5000/addProducts", {
+      fetch("https://automotive-server-indol.vercel.app/addProducts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

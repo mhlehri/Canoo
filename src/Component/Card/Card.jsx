@@ -32,7 +32,7 @@ const Card = () => {
       {/* card1 */}
       {brandInfo?.map((brand, index) => {
         return (
-          <Link key={index} to={`/cars?brand=${brand.name}`}>
+          <Link key={index} to={`/cars/${brand.name}`}>
             <div className="relative flex flex-col text-black bg-white dark:bg-gray-900 hover:shadow-xl shadow-md   rounded-xl bg-clip-border">
               <div className="relative mx-4 mt-4 overflow-hidden dark:text-white text-black dark:bg-gray-900  bg-white shadow-lg dark:shadow-sm dark:shadow-white/20  rounded-xl bg-clip-border">
                 <img src={brand.img} alt="profile-picture" />

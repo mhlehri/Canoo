@@ -50,7 +50,7 @@ export function EditCar() {
         brand: fbrand,
       };
 
-      fetch(`http://localhost:5000/cars-edit/${name}`, {
+      fetch(`https://automotive-server-indol.vercel.app/cars-edit/${name}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

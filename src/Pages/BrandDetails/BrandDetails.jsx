@@ -1,29 +1,20 @@
 import { Button, Carousel, Rating } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Link, useLoaderData, useLocation } from "react-router-dom";
+import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
 
 const BrandDetails = () => {
-  const [loaded, setLoaded] = useState("");
-  const location = useLocation();
-  const brandName = new URLSearchParams(location.search);
-  const paramValue = brandName.get("brand");
-  const [search, setSearch] = useState(paramValue);
+  const [loaded, setLoaded] = useState([]);
+  const { brand } = useParams();
+  console.log(brand);
 
-  const sub = (e) => {
-    e.preventDefault();
-    console.log(e.target.sea.value);
-    setSearch(e.target.sea.value);
-  };
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/cars?brand=${search == "" ? paramValue : search}`
-    )
+    fetch(`https://automotive-server-indol.vercel.app/cars/${brand}`)
       .then((res) => res.json())
       .then((data) => {
         setLoaded(data);
       });
-  }, [search, paramValue]);
-
+  }, [loaded]);
+  console.log(loaded, "15");
   return (
     <>
       <Carousel
@@ -62,12 +53,7 @@ const BrandDetails = () => {
         />
       </Carousel>
 
-      <form onSubmit={sub}>
-        <input type="text" name="sea" />
-        <button type="submit">submit</button>
-      </form>
-
-      {loaded.length ? (
+      {loaded?.length ? (
         <div className="max-w-6xl mx-auto px-4 my-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {loaded?.map((car, i) => {

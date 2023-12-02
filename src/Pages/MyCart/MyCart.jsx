@@ -26,7 +26,7 @@ const MyCart = () => {
       background: "teal",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/remove/${_id}`, {
+        fetch(`https://automotive-server-indol.vercel.app/remove/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

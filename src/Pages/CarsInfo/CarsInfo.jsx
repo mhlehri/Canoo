@@ -22,7 +22,7 @@ const CarsInfo = () => {
     email,
   };
   const handleAddCart = () => {
-    fetch("http://localhost:5000/cars-info/add", {
+    fetch("https://automotive-server-indol.vercel.app/cars-info/add", {
       method: "POST",
       headers: {
         "content-type": "application/json",
