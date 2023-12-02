@@ -30,11 +30,11 @@ const Card = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3 max-w-6xl  my-20 mx-auto">
       {/* card1 */}
-      {brandInfo.map((brand, index) => {
+      {brandInfo?.map((brand, index) => {
         return (
-          <Link key={index} to={`/cars/${brand.name}`}>
-            <div className="relative flex flex-col text-black bg-white dark:bg-gray-800 hover:shadow-xl shadow-md dark:shadow-white/20  rounded-xl bg-clip-border">
-              <div className="relative mx-4 mt-4 overflow-hidden dark:text-white text-black dark:bg-gray-800  bg-white shadow-lg  rounded-xl bg-clip-border">
+          <Link key={index} to={`/cars?brand=${brand.name}`}>
+            <div className="relative flex flex-col text-black bg-white dark:bg-gray-900 hover:shadow-xl shadow-md   rounded-xl bg-clip-border">
+              <div className="relative mx-4 mt-4 overflow-hidden dark:text-white text-black dark:bg-gray-900  bg-white shadow-lg dark:shadow-sm dark:shadow-white/20  rounded-xl bg-clip-border">
                 <img src={brand.img} alt="profile-picture" />
               </div>
               <div className="p-6 text-center">

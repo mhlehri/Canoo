@@ -5,7 +5,7 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { toast } from "react-toastify";
 
 export function SignIn() {
-  const { logIn, googleLogin, user } = useContext(AuthContext);
+  const { logIn, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -13,10 +13,10 @@ export function SignIn() {
     const email = form.email.value;
     const password = form.password.value;
     const user = { email, password };
-    console.log(user);
+
     logIn(email, password)
       .then(() => {
-        toast.success("Successfully Registered!", {
+        toast.success("Successfully Logged In!", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -84,7 +84,7 @@ export function SignIn() {
                     navigate("/");
                     toast.success(`Successfully Logged In!`, {
                       position: "top-center",
-                      autoClose: 3000,
+                      autoClose: 1500,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,

@@ -12,10 +12,10 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export function EditCar() {
-  const [selection, setSelection] = useState(null);
   const loaded = useLoaderData();
   const navigate = useNavigate();
   const { name, photo, type, des, price, rating, brand } = loaded;
+  const [selection, setSelection] = useState(brand);
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -26,9 +26,9 @@ export function EditCar() {
     const fprice = form.price.value;
     const frating = form.rating.value;
     const des = form.des.value;
-    const brand = selection;
+    const fbrand = selection;
 
-    if (!fname || !fphoto || !ftype || !fprice || !frating || !des || !brand) {
+    if (!fname || !fphoto || !ftype || !fprice || !frating || !des || !fbrand) {
       toast.error("please fill up every field!", {
         position: "top-center",
         autoClose: 3000,
@@ -47,10 +47,10 @@ export function EditCar() {
         type: ftype,
         price: fprice,
         rating: frating,
-        brand,
+        brand: fbrand,
       };
 
-      fetch(`https://automotive-server-indol.vercel.app/cars-edit/${name}`, {
+      fetch(`http://localhost:5000/cars-edit/${name}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -59,7 +59,6 @@ export function EditCar() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.modifiedCount);
           if (data.modifiedCount > 0) {
             navigate(-1);
             toast.success("Product Updated successfully!", {
@@ -107,7 +106,6 @@ export function EditCar() {
                 value={selection}
                 onChange={(value) => setSelection(value)}
                 name="brand"
-                defaultValue={brand}
                 label="Select Brand"
               >
                 <Option value="Toyota">Toyota</Option>

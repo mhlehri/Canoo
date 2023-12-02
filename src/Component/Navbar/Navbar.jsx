@@ -70,19 +70,18 @@ export function StickyNavbar() {
   const { user, logOut } = useContext(AuthContext);
 
   return (
-    <div className="">
-      <Navbar className="bg-white dark:bg-gray-800  max-w-full border-none  rounded-none py-2 px-4 lg:px-8 lg:py-4">
+    <div>
+      <Navbar className="bg-white dark:bg-gray-900  max-w-full border-none  rounded-none py-2 px-4 lg:px-8 lg:py-4">
         <div className="flex items-center  mx-auto max-w-6xl  justify-between dark:text-white text-black">
           <Typography
             as="a"
-            href="#"
             className="mr-4 text-2xl flex items-center gap-1  dark:text-white cursor-pointer py-1.5 font-bold"
           >
             <img
-              src="https://i.ibb.co/nsmvY3b/blue-car-logo-png.webp"
+              src="https://i.ibb.co/b5X2g75/Mustang-Car-Illustration.png"
               alt="blue-car-logo-png"
-              width={50}
-            />{" "}
+              width={80}
+            />
             CANOO
           </Typography>
           <div className="flex items-center gap-4">
@@ -139,11 +138,11 @@ export function StickyNavbar() {
                   </div>
                 </div>
 
-                <Link to="/login">
+                <Link>
                   <Button
                     onClick={() => logOut().then().catch()}
                     size="sm"
-                    className="hidden    lg:inline-block"
+                    className="hidden dark:bg-gray-800   lg:inline-block"
                   >
                     <span>Logout</span>
                   </Button>
@@ -151,7 +150,10 @@ export function StickyNavbar() {
               </div>
             ) : (
               <Link to="/login">
-                <Button size="sm" className="hidden   lg:inline-block">
+                <Button
+                  size="sm"
+                  className="hidden   dark:bg-gray-800 lg:inline-block"
+                >
                   <span>Login</span>
                 </Button>
               </Link>
@@ -212,20 +214,19 @@ export function StickyNavbar() {
                   alt=""
                 />
               </div>
-              <Link to="/login">
-                <Button
-                  onClick={() => logOut().then().catch()}
-                  className="  mb-2"
-                  size="sm"
-                  fullWidth
-                >
-                  <span>Logout</span>
-                </Button>
-              </Link>
+
+              <Button
+                onClick={() => logOut().then().catch()}
+                className="dark:bg-gray-700  mb-2"
+                size="sm"
+                fullWidth
+              >
+                <span>Logout</span>
+              </Button>
             </div>
           ) : (
             <Link to="/login">
-              <Button className="  mb-2" size="sm" fullWidth>
+              <Button className="dark:bg-gray-700  mb-2" size="sm" fullWidth>
                 <span>Login</span>
               </Button>
             </Link>

@@ -40,8 +40,7 @@ const router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRoute>
         ),
-        loader: () =>
-          fetch("https://automotive-server-indol.vercel.app/cars-info"),
+        loader: () => fetch("http://localhost:5000/cars-info"),
       },
       {
         path: "/login",
@@ -52,12 +51,8 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
-        path: "/cars/:brand",
+        path: "/cars",
         element: <BrandDetails></BrandDetails>,
-        loader: ({ params }) =>
-          fetch(
-            `https://automotive-server-indol.vercel.app/cars/${params.brand}`
-          ),
       },
       {
         path: "/cars-info/:carName",
@@ -67,9 +62,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://automotive-server-indol.vercel.app/cars-info/${params.carName}`
-          ),
+          fetch(`http://localhost:5000/cars-info/${params.carName}`),
       },
       {
         path: "/cars-edit/:carName",
@@ -79,9 +72,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://automotive-server-indol.vercel.app/cars-edit/${params.carName}`
-          ),
+          fetch(`http://localhost:5000/cars-edit/${params.carName}`),
       },
     ],
   },

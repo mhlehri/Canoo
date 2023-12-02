@@ -8,10 +8,12 @@ import {
   Option,
 } from "@material-tailwind/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export function AddProduct() {
   const [selection, setSelection] = useState(null);
+  const navigate = useNavigate();
   const handleAdd = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -45,7 +47,7 @@ export function AddProduct() {
         brand,
       };
 
-      fetch("https://automotive-server-indol.vercel.app/addProducts", {
+      fetch("http://localhost:5000/addProducts", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -65,6 +67,8 @@ export function AddProduct() {
               progress: undefined,
               theme: "colored",
             });
+
+            form.reset();
           }
         });
     }

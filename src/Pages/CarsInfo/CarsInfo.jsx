@@ -1,8 +1,12 @@
 import { Button, Rating } from "@material-tailwind/react";
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../Component/AuthProvider/AuthProvider";
 
 const CarsInfo = () => {
+  const { user } = useContext(AuthContext);
+  const { email } = user;
   const loadedCar = useLoaderData();
 
   const { photo, name, brand, price, rating, des, type } = loadedCar;
@@ -15,9 +19,10 @@ const CarsInfo = () => {
     rating,
     des,
     type,
+    email,
   };
   const handleAddCart = () => {
-    fetch("https://automotive-server-indol.vercel.app/cars-info/add", {
+    fetch("http://localhost:5000/cars-info/add", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -72,7 +77,7 @@ const CarsInfo = () => {
             </Button>
           </div>
         </div>
-        <div className="dark:text-white">
+        <div className="dark:text-white p-5">
           <h1 className="text-4xl  font-semibold mb-3">More Detail</h1>
           <p className="dark:text-gray-400">{des}</p>
         </div>

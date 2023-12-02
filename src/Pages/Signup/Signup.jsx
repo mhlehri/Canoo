@@ -20,12 +20,11 @@ export function SignUp() {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, photo, email, password);
 
     if (password.length < 6) {
       return toast.error("Password should be at least 6 character!", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -36,7 +35,7 @@ export function SignUp() {
     } else if (!password.match(/[A-Z]/)) {
       return toast.error("Password should have at least one UpperCase!", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -49,7 +48,7 @@ export function SignUp() {
     ) {
       return toast.error("Password should have at least special Character!", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -62,7 +61,7 @@ export function SignUp() {
         .then((res) => {
           toast.success("Successfully Registered!", {
             position: "top-center",
-            autoClose: 3000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -70,7 +69,7 @@ export function SignUp() {
             progress: undefined,
             theme: "colored",
           });
-          console.log(res);
+
           profileUpdate(name, photo)
             .then(
               logOut()
@@ -82,7 +81,7 @@ export function SignUp() {
         .catch((err) => {
           toast.error(`${err.message}`, {
             position: "top-center",
-            autoClose: 3000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -149,7 +148,7 @@ export function SignUp() {
               Register
             </Button>
             <Typography className="mt-4 text-center font-normal">
-              Already have an account?{" "}
+              Already have an account?
               <Link to="/login" className="font-medium underline">
                 Sign In
               </Link>
@@ -163,9 +162,9 @@ export function SignUp() {
                 googleLogin()
                   .then(() => {
                     navigate("/");
-                    toast.success("Successfully Logged In!", {
+                    toast.success("Successfully registered!", {
                       position: "top-center",
-                      autoClose: 5000,
+                      autoClose: 2000,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,
