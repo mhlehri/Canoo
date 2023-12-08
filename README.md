@@ -1,7 +1,16 @@
-# Automotive Website: Canoo
-## Live link: https://canoo1.netlify.app
-#### server-side repo link: https://github.com/mhlehri/canoo-server
-##### Projects Feature.
+### Automotive Website: Canoo
+
+## Live Link: <a href="https://canoo1.netlify.app">Canoo🔗</a>
+
+#### server-side repo link: <a href="https://github.com/mhlehri/canoo-server">Server Repo🔗</a>
+
+#### 🖥️ Teachs used:
+
+<a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=tailwind,react,express,mongodb,firebase" />
+  </a>
+
+#### 🧩 Porject Features:
 
 - User Registration: Users can create an account by providing their personal information, such as name, email, and password, during the registration process.
 - User Authentication: Registered users can log in using their email and password to access the website's features.
