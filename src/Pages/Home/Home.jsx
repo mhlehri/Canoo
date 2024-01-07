@@ -9,7 +9,6 @@ const Home = () => {
     <div>
       <ImgWithBlurredCaption></ImgWithBlurredCaption>
       <Card> </Card>
-
       <Features></Features>
       <Activities></Activities>
       <Testimonial></Testimonial>

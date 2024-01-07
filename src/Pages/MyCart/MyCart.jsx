@@ -1,16 +1,20 @@
 import { Button } from "@material-tailwind/react";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../Component/AuthProvider/AuthProvider";
+// import { AuthContext } from "../../Component/AuthProvider/AuthProvider";
+import { useUser } from "@clerk/clerk-react";
 
 const MyCart = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const { user } = useUser();
+  const { primaryEmailAddress } = user;
   const loaded = useLoaderData();
-  const { email } = user;
 
-  const myCart = loaded?.filter((cart) => cart.email === email);
+  const myCart = loaded?.filter(
+    (cart) => cart.email === primaryEmailAddress?.emailAddress
+  );
 
   const [remaining, setRemaining] = useState(myCart);
 

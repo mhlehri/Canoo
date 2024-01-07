@@ -1,12 +1,13 @@
 import { Button, Rating } from "@material-tailwind/react";
-import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../Component/AuthProvider/AuthProvider";
+import { useUser } from "@clerk/clerk-react";
 
 const CarsInfo = () => {
-  const { user } = useContext(AuthContext);
-  const { email } = user;
+  // const { user } = useContext(AuthContext);
+  const { user } = useUser();
+  const { primaryEmailAddress } = user;
+  console.log(primaryEmailAddress?.emailAddress);
   const loadedCar = useLoaderData();
 
   const { photo, name, brand, price, rating, des, type } = loadedCar;
@@ -19,7 +20,7 @@ const CarsInfo = () => {
     rating,
     des,
     type,
-    email,
+    email: primaryEmailAddress?.emailAddress,
   };
   const handleAddCart = () => {
     fetch("https://automotive-server-indol.vercel.app/cars-info/add", {

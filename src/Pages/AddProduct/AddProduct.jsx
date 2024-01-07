@@ -8,12 +8,10 @@ import {
   Option,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export function AddProduct() {
   const [selection, setSelection] = useState(null);
-  const navigate = useNavigate();
   const handleAdd = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -67,7 +65,6 @@ export function AddProduct() {
               progress: undefined,
               theme: "colored",
             });
-
             form.reset();
           }
         });
@@ -111,7 +108,6 @@ export function AddProduct() {
                 name="des"
                 label="Short Description"
               />
-
               <Input type="number" size="lg" name="rating" label="Rating" />
             </div>
             <Button type="submit" className="mt-6 dark:bg-gray-800" fullWidth>

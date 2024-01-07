@@ -5,8 +5,7 @@ import "./index.css";
 import MainLayout from "./MainLayout.jsx";
 import Home from "./Pages/Home/Home";
 import MyCart from "./Pages/MyCart/MyCart";
-import { SignIn } from "./Pages/Signin/Signin";
-import { SignUp } from "./Pages/Signup/Signup";
+import SignUpPage from "./Pages/Signup/Signup";
 import { AddProduct } from "./Pages/AddProduct/AddProduct";
 import AuthProvider from "./Component/AuthProvider/AuthProvider";
 import PrivateRoute from "./Component/AuthProvider/PrivateRoute/PrivateRoute";
@@ -14,6 +13,8 @@ import BrandDetails from "./Pages/BrandDetails/BrandDetails";
 import Error from "./Pages/Error/Error";
 import CarsInfo from "./Pages/CarsInfo/CarsInfo";
 import { EditCar } from "./Pages/EditPage/EditCar";
+import { ClerkProvider } from "@clerk/clerk-react";
+import SignInPage from "./Pages/Signin/Signin.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,11 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <SignIn></SignIn>,
+        element: <SignInPage></SignInPage>,
       },
       {
         path: "/signUp",
-        element: <SignUp></SignUp>,
+        element: <SignUpPage></SignUpPage>,
       },
       {
         path: "/cars/:brand",
@@ -82,11 +83,18 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+  // console.log("Missing Publishable Key");
+}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </AuthProvider>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <AuthProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </AuthProvider>
+    </ClerkProvider>
   </React.StrictMode>
 );

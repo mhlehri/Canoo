@@ -9,6 +9,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import makeDark from "../../..";
+import { UserButton, useUser } from "@clerk/clerk-react";
 
 export function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -67,7 +68,9 @@ export function StickyNavbar() {
     </ul>
   );
 
-  const { user, logOut } = useContext(AuthContext);
+  // const { user, logOut } = useContext(AuthContext);
+  const { user } = useUser();
+  console.log(user);
 
   return (
     <div>
@@ -79,7 +82,7 @@ export function StickyNavbar() {
           >
             <img
               src="https://i.ibb.co/b5X2g75/Mustang-Car-Illustration.png"
-              alt="blue-car-logo-png"
+              alt="logo"
               width={80}
             />
             CANOO
@@ -124,8 +127,8 @@ export function StickyNavbar() {
             {user ? (
               <div className="flex items-center gap-2 text-sm">
                 <div className="hidden lg:inline-block">
-                  <div className=" ps-2 flex items-center  gap-1">
-                    {user?.displayName}
+                  <div className="ps-2 flex items-center gap-1">
+                    {/* {user?.displayName}
                     <img
                       src={user?.photoURL}
                       className={`${
@@ -134,19 +137,10 @@ export function StickyNavbar() {
                           : "w-0 h-0 border-none"
                       }`}
                       alt=""
-                    />
+                    /> */}
+                    <UserButton afterSignOutUrl="/" />
                   </div>
                 </div>
-
-                <Link>
-                  <Button
-                    onClick={() => logOut().then().catch()}
-                    size="sm"
-                    className="hidden dark:bg-gray-800   lg:inline-block"
-                  >
-                    <span>Logout</span>
-                  </Button>
-                </Link>
               </div>
             ) : (
               <Link to="/login">

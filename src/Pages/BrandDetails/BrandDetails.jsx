@@ -5,7 +5,7 @@ import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
 const BrandDetails = () => {
   const [loaded, setLoaded] = useState([]);
   const { brand } = useParams();
-  console.log(brand);
+  // console.log(brand);
 
   useEffect(() => {
     fetch(`https://automotive-server-indol.vercel.app/cars/${brand}`)
@@ -13,8 +13,8 @@ const BrandDetails = () => {
       .then((data) => {
         setLoaded(data);
       });
-  }, [loaded]);
-  console.log(loaded, "15");
+  }, []);
+  // console.log(loaded, "15");
   return (
     <>
       <Carousel
