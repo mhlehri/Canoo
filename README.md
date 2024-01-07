@@ -1,8 +1,19 @@
-# React + Vite
+### Automotive Website: Canoo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Link: <a href="https://canoo1.netlify.app">Canoo🔗</a>
 
-Currently, two official plugins are available:
+#### server-side repo link: <a href="https://github.com/mhlehri/canoo-server">Server Repo🔗</a>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### 🖥️ Teachs used:
+
+<a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=tailwind,react,express,mongodb,firebase" />
+  </a>
+
+#### 🧩 Porject Features:
+
+- User Registration: Users can create an account by providing their personal information, such as name, email, and password, during the registration process.
+- User Authentication: Registered users can log in using their email and password to access the website's features.
+- Protected Routes: Certain sections of the website are restricted to authenticated users only. These protected routes can include user profiles, personalized dashboards, or other sensitive content.
+- Shopping Cart Functionality: Users can browse products and add items to their shopping cart. The shopping cart stores information about selected products, such as product details, quantity, and total price.
+- Cart Management: Users can manage their shopping cart by performing actions such as adding more items, removing items, updating quantities, or clearing the entire cart.
